@@ -6,3 +6,4 @@ projekt-zespol-8 created by GitHub Classroom
 
 - Anna Pierzchała
 - Viktor Grünwaldt
+- Antoni Strasz
