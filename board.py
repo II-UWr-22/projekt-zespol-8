@@ -71,6 +71,12 @@ class Board:
 
         return line + inner + line
 
+    def set_piece(self, x: int, y: int, piece_id: int):
+        if self.pieces_position[piece_id]:
+            raise ValueError("Piece has been already placed")
+        self.board[y][x] = piece_id
+        self.pieces_position[piece_id] = (y, x)
+
 
 b = Board()
 print(b)
