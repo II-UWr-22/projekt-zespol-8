@@ -1,3 +1,4 @@
+from game_functions import place_pawn, choose_pawn
 class Piece:
     # defines Piece properties (please modify satisfy to board drawing)
     # each piece has exactly 4 attributes, and each attribute
@@ -49,7 +50,7 @@ class Piece:
 
     # TODO: prettier str representation
     def __str__(self) -> str:
-        return str(self.id)
+        return f"{str(self.id)}     {' | '.join(self.attributes)}"
 
     def __repr__(self) -> str:
         return f"{__name__}({self.id=}, {self.attributes=})"
@@ -62,6 +63,8 @@ class Board:
     def __init__(self) -> None:
         self.board = [[None] * 4 for _ in range(4)]
         self.pieces_position = [None] * 16
+        #(Tymczasowo) trzyma id dostępnych pionków
+        self.available_pieces = [i for i in range(16)]
 
     def __str__(self) -> str:
         line = "+" + "-" * 25 + "+\n"
@@ -74,9 +77,22 @@ class Board:
     def set_piece(self, x: int, y: int, piece_id: int):
         if self.pieces_position[piece_id]:
             raise ValueError("Piece has been already placed")
-        self.board[y][x] = piece_id
-        self.pieces_position[piece_id] = (y, x)
+        self.board[x][y] = Piece(id=piece_id)
+        self.pieces_position[piece_id] = (x, y)
 
+#TODO
+# 1. Start Gry
+# 2. Tworzenie nowej planszy
+# 3. Faza wyboru pionka przez pierwszego gracza
+# 4. Stawianie pionka przez gracza drugiego
+# 5. Sprawdzanie czy gra się kończy jeśli tak to wyświetlanie wygranego oraz powrót do punktu 1
+# 6. Zmiana roli graczy i powrót do punktu 3
 
-b = Board()
-print(b)
+board = Board()
+while True:
+    print(board)
+    print(board.available_pieces)
+    pawn = choose_pawn(board)
+    # Pola od 00 do 33
+    place_pawn(board,pawn)
+    # TODO
