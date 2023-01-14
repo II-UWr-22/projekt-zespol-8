@@ -46,7 +46,7 @@ def gra():          #Tutaj jest rozgrywka
         pomoc = place_pawn(board,pawn)      # Pola od 00 do 33
         if pomoc == "Menu":
             break
-        if check_for_win():
+        if check_for_win(board, pomoc):
             return 2 -gracz  #zwraca numer gracza który stawiał pionka
 
         gracz = (gracz+1)%2
