@@ -88,6 +88,9 @@ class Board:
 # 5. Sprawdzanie czy gra się kończy jeśli tak to wyświetlanie wygranego oraz powrót do punktu 1
 # 6. Zmiana roli graczy i powrót do punktu 3
 
+
+#Przenoszę to do osobnego pliku main_loop.py do funkcji gra
+"""
 board = Board()
 while True:
     print(board)
@@ -96,3 +99,4 @@ while True:
     # Pola od 00 do 33
     place_pawn(board,pawn)
     # TODO
+"""
