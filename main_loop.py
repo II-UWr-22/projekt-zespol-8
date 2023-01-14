@@ -2,7 +2,7 @@
 # Głowna pętla - to tutaj toczy się gra        #
 ################################################
 
-from game_functions import place_pawn, choose_pawn
+from game_functions import place_pawn, choose_pawn, check_for_win
 from board import Piece, Board
 
 
@@ -46,8 +46,11 @@ def gra():          #Tutaj jest rozgrywka
         pomoc = place_pawn(board,pawn)      # Pola od 00 do 33
         if pomoc == "Menu":
             break
+        if check_for_win():
+            return 2 -gracz  #zwraca numer gracza który stawiał pionka
 
         gracz = (gracz+1)%2
+    return None
 
 
 def zasady():         #To wyświetla zasady
@@ -63,6 +66,13 @@ def zasady():         #To wyświetla zasady
     input(treść)
 
 
+def wygrana(gracz):
+    if gracz:
+        print(f"Wygrywa gracz {gracz}")
+    else:
+        print("Remis")
+
+
 while True:     #Tutaj jest menu                
 
     while True:
@@ -74,7 +84,8 @@ while True:     #Tutaj jest menu
             break
 
     if wybór_startowy == 1:
-        gra()
+        wygrany = gra()
+        wygrana(wygrany)
     elif wybór_startowy == 2:
         zasady()
     elif wybór_startowy == 3:

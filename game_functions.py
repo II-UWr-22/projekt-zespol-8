@@ -33,3 +33,8 @@ def place_pawn(board,pawn):
                 print("Pozycja zajęta")
         except:
             print("Podaj poprawną pozycję")
+
+
+def check_for_win():
+    #TODO
+    pass
