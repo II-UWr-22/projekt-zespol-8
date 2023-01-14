@@ -1,9 +1,13 @@
 #Wybiera pionka po id, usuwa go z dostępnych i zwraca id
 def choose_pawn(board):
     while True:
+        
+        pawn = input("Podaj pionka którego ma postawić twój przeciwnik: ")          #Drobna zmiana, żeby [Menu] przerywało rozgrywkę
         try:
-            pawn = int(input("Podaj pionka którego ma postawić twój przeciwnik: "))
+            pawn = int(pawn)
         except:
+            if pawn.strip().lower() == 'menu':
+                return 'Menu'
             print("Pionek musi być liczbą")
             continue
         if pawn in board.available_pieces:
@@ -18,9 +22,11 @@ def choose_pawn(board):
 def place_pawn(board,pawn):
     while True:
         position = input(f"Podaj pole na które chcesz postawić pionka {pawn}: ")
+        if position.strip().lower() == "menu":                                      #Kolejna zmiana umożliwiająca przerwanie gry
+            return "Menu"
         try:
             x,y = int(position[0]),int(position[1])
             board.set_piece(x, y, pawn)
-            break
+            return None
         except:
             print("Podaj poprawną pozycję")

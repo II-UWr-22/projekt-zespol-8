@@ -19,20 +19,35 @@ startowa_wiadomość = """
 """
 
 
-
 def gra():          #Tutaj jest rozgrywka
+    print("\n" * 100)
     board = Board()
 
-    print('\n\n\n[Menu] by zakończyć rozgrywkę w dowolnym momencie wpisz')
+    print('\n\n\n[Menu] by zakończyć rozgrywkę w dowolnym momencie wpisz\n\n')
 
-    while wybór_startowy == 1:
+    gracz = 0       #O to gracz pierwszy, a 1 to gracz drugi
+
+    while len(board.available_pieces)  > 0:                             #Tutaj zostanie dodany warunek zwycięstwa gdy zostanie zaimplementowany logicznie
         print(board)
-        print(board.available_pieces)
+
+        print('Dostępne pionki: ')
+        lista_pionków = [Piece(x) for x in board.available_pieces]      #Lista pionków 
+        for pionek in lista_pionków:                                    #Wyświetla dostępne pionki wraz z atrybutami
+            print(pionek)
+        print('\n\n')
+
+        print(f"\t\tRuch gracza {gracz + 1}")                           #Wybiera pionek drugiemu graczowi
         pawn = choose_pawn(board)
-        
-        # Pola od 00 do 33
-        place_pawn(board,pawn)
-        
+        if pawn == 'Menu':
+            break
+        print("\n")
+
+        print(f"\t\tRuch gracza {2 -gracz}")                            #Wybiera gdzie kładzie zadany pionek
+        pomoc = place_pawn(board,pawn)      # Pola od 00 do 33
+        if pomoc == "Menu":
+            break
+
+        gracz = (gracz+1)%2
 
 
 def zasady():         #To wyświetla zasady
@@ -66,5 +81,12 @@ while True:     #Tutaj jest menu
         break
 
 print('Dziękujemy za grę :D')
+
+
+#TODO
+# 1. Funkcja sprawdzająca czy ktoś już wygrał
+# 2. Jakiś output planszy, żeby było widać co to za pionki
+# 3. Zakończenie gry (informacja o wyniku rozgrywki i powrót do menu)
+
 
 
