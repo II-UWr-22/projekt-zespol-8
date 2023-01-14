@@ -26,7 +26,10 @@ def place_pawn(board,pawn):
             return "Menu"
         try:
             x,y = int(position[0]),int(position[1])
-            board.set_piece(x, y, pawn)
-            return None
+            if not board.board[x][y]:
+                board.set_piece(x, y, pawn)
+                return None
+            else:
+                print("Pozycja zajęta")
         except:
             print("Podaj poprawną pozycję")
