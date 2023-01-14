@@ -13,3 +13,4 @@ Wygraną osiąga gracz, który postawi pionek, dzięki któremu na planszy powst
 - Viktor Grünwaldt
 - Antoni Strasz
 - Kacper Pajor
+- Bartosz Marchewka
