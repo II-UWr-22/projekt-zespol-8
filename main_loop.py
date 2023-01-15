@@ -19,7 +19,7 @@ startowa_wiadomość = """
 """
 
 
-def gra():          #Tutaj jest rozgrywka
+def gra(gracze):          #Tutaj jest rozgrywka
     print("\n" * 100)
     board = Board()
 
@@ -36,18 +36,18 @@ def gra():          #Tutaj jest rozgrywka
             print(pionek)
         print('\n\n')
 
-        print(f"\t\tRuch gracza {gracz + 1}")                           #Wybiera pionek drugiemu graczowi
+        print(f"\t\tRuch gracza {gracze[gracz]}")                           #Wybiera pionek drugiemu graczowi
         pawn = choose_pawn(board)
         if pawn == 'Menu':
             break
         print("\n")
 
-        print(f"\t\tRuch gracza {2 -gracz}")                            #Wybiera gdzie kładzie zadany pionek
+        print(f"\t\tRuch gracza {gracze[1 -gracz]}")                            #Wybiera gdzie kładzie zadany pionek
         pomoc = place_pawn(board,pawn)      # Pola od 00 do 33
         if pomoc == "Menu":
             break
         if check_for_win(board, pomoc):
-            return 2 -gracz  #zwraca numer gracza który stawiał pionka
+            return gracze[1 -gracz]  #zwraca numer gracza który stawiał pionka
 
         gracz = (gracz+1)%2
     return None
@@ -72,6 +72,11 @@ def wygrana(gracz):
     else:
         print("Remis")
 
+def wczytaj_nazwy_graczy():
+    gracz1 = input("Podaj nazwę gracza 1: ")
+    gracz2 = input("Podaj nazwę gracza 2: ")
+    return (gracz1,gracz2)
+
 
 while True:     #Tutaj jest menu                
 
@@ -84,7 +89,8 @@ while True:     #Tutaj jest menu
             break
 
     if wybór_startowy == 1:
-        wygrany = gra()
+        gracze = wczytaj_nazwy_graczy()
+        wygrany = gra(gracze)
         wygrana(wygrany)
     elif wybór_startowy == 2:
         zasady()
