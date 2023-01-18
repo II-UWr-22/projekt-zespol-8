@@ -21,7 +21,7 @@ def choose_pawn(board):
 #Kładzie pionka na wybranym polu
 def place_pawn(board,pawn):
     while True:
-        position = input(f"Podaj pole na które chcesz postawić pionka {pawn}: ")
+        position = input(f"Podaj pole (|00| - |33|) na które chcesz postawić pionka {pawn}: ")
         if position.strip().lower() == "menu":                                      #Kolejna zmiana umożliwiająca przerwanie gry
             return "Menu"
         try:

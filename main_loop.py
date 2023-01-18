@@ -23,7 +23,7 @@ def gra(gracze):          #Tutaj jest rozgrywka
     print("\n" * 100)
     board = Board()
 
-    print('\n\n\n[Menu] by zakończyć rozgrywkę w dowolnym momencie wpisz\n\n')
+    print('\n\n\n[Menu] by zakończyć rozgrywkę w dowolnym momencie wpisz "Menu"\n\n')
 
     gracz = 0       #O to gracz pierwszy, a 1 to gracz drugi
 
@@ -101,9 +101,7 @@ print('Dziękujemy za grę :D')
 
 
 #TODO
-# 1. Funkcja sprawdzająca czy ktoś już wygrał
-# 2. Jakiś output planszy, żeby było widać co to za pionki
-# 3. Zakończenie gry (informacja o wyniku rozgrywki i powrót do menu)
+# 1. Jakiś output planszy, żeby było widać co to za pionki
 
 
 

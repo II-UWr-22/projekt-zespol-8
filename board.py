@@ -69,8 +69,8 @@ class Board:
     def __str__(self) -> str:
         line = "+" + "-" * 25 + "+\n"
         inner = ""
-        for row in self.board:
-            inner += "|" + "\t".join(str(piece.id) if piece else ".." for piece in row) + "|\n"
+        for row_index,row in enumerate(self.board):
+            inner += "|" + "  \t".join(f" {str(piece.id):>2} " if piece else f"|{row_index}{piece_index}|" for piece_index,piece in enumerate(row)) + "|\n"
 
         return line + inner + line
 
