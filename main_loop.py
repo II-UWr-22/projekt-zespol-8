@@ -4,18 +4,17 @@
 
 from game_functions import place_pawn, choose_pawn, check_for_win
 from board import Piece, Board
-
+from turtle import *
+from game_functions import draw_pawn
 
 #Prowizoryczny ekran startowy
 
 startowa_wiadomość = """
-\t\tMenu:
+[1] Rozpocznij grę 
 
-\t[1] Rozpocznij grę 
+[2] Wyświetl zasady 
 
-\t[2] Wyświetl zasady 
-
-\t[3] Wyjście 
+[3] Wyjście 
 """
 
 
@@ -27,7 +26,7 @@ def gra(gracze):          #Tutaj jest rozgrywka
 
     gracz = 0       #O to gracz pierwszy, a 1 to gracz drugi
 
-    while len(board.available_pieces)  > 0:                             #Tutaj zostanie dodany warunek zwycięstwa gdy zostanie zaimplementowany logicznie
+    while len(board.available_pieces) > 0:                             #Tutaj zostanie dodany warunek zwycięstwa gdy zostanie zaimplementowany logicznie
         print(board)
 
         print('Dostępne pionki: ')
@@ -46,12 +45,12 @@ def gra(gracze):          #Tutaj jest rozgrywka
         pomoc = place_pawn(board,pawn)      # Pola od 00 do 33
         if pomoc == "Menu":
             break
+        draw_pawn(pomoc[0], pomoc[1], 50, board)  # to rysuje pionka na danej pozycji
         if check_for_win(board, pomoc):
             return gracze[1 -gracz]  #zwraca numer gracza który stawiał pionka
 
-        gracz = (gracz+1)%2
+        gracz = (gracz+1) % 2
     return None
-
 
 def zasady():         #To wyświetla zasady
     treść = """
@@ -63,25 +62,27 @@ def zasady():         #To wyświetla zasady
 
     [Enter] Powrót do menu
     """
-    input(treść)
+    textinput("Zasady:", treść)
 
 
 def wygrana(gracz):
     if gracz:
-        print(f"Wygrywa gracz {gracz}")
+        textinput("Koniec gry", f"Wygrywa gracz {gracz}")
+        clearscreen()
     else:
-        print("Remis")
+        textinput("Koniec gry", "Remis")
+        clearscreen()
 
 def wczytaj_nazwy_graczy():
-    gracz1 = input("Podaj nazwę gracza 1: ")
-    gracz2 = input("Podaj nazwę gracza 2: ")
+    gracz1 = textinput("Gracz nr 1", "Podaj nazwę gracza 1: ")
+    gracz2 = textinput("Gracz nr 2", "Podaj nazwę gracza 2: ")
     return (gracz1,gracz2)
 
 
 while True:     #Tutaj jest menu                
 
     while True:
-        wybór_startowy = input(startowa_wiadomość)
+        wybór_startowy = textinput("Wybierz opcję", startowa_wiadomość)
         if wybór_startowy not in ['1','2','3']:               #Nasze opcje w menu (jak ktoś ma propozycje to proszę pisać)
             print('[Taka opcja nie istnieje]\n\n')
         else:
@@ -98,10 +99,7 @@ while True:     #Tutaj jest menu
         break
 
 print('Dziękujemy za grę :D')
-
-
-#TODO
-# 1. Jakiś output planszy, żeby było widać co to za pionki
+done()
 
 
 

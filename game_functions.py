@@ -1,8 +1,11 @@
-#Wybiera pionka po id, usuwa go z dostępnych i zwraca id
+from turtle import *
+
+
+# Wybiera pionka po id, usuwa go z dostępnych i zwraca id
 def choose_pawn(board):
     while True:
         
-        pawn = input("Podaj pionka którego ma postawić twój przeciwnik: ")          #Drobna zmiana, żeby [Menu] przerywało rozgrywkę
+        pawn = textinput("Pionek", "Podaj pionka, którego ma postawić twój przeciwnik: ")          #Drobna zmiana, żeby [Menu] przerywało rozgrywkę
         try:
             pawn = int(pawn)
         except:
@@ -18,10 +21,10 @@ def choose_pawn(board):
     return pawn
 
 
-#Kładzie pionka na wybranym polu
-def place_pawn(board,pawn):
+# Kładzie pionka na wybranym polu
+def place_pawn(board, pawn):
     while True:
-        position = input(f"Podaj pole (|00| - |33|) na które chcesz postawić pionka {pawn}: ")
+        position = textinput("Pole", f"Podaj pole (|00| - |33|) na które chcesz postawić pionka {pawn}: ")
         if position.strip().lower() == "menu":                                      #Kolejna zmiana umożliwiająca przerwanie gry
             return "Menu"
         try:
@@ -75,3 +78,86 @@ def check_diag(atr, x, y, board):
                 return False
         return True
     return False
+
+
+# rysowanie pionkow na planszy
+def move(x, y):
+    penup()
+    goto(x, y)
+    pendown()
+
+
+def draw_square(side, colour, x, y):
+    move(x, y)
+    fillcolor(colour)
+    begin_fill()
+    penup()
+    lt(90)
+    fd(side / 2)
+    rt(90)
+    pendown()
+    fd(side / 2)
+    for x in range(3):
+        rt(90)
+        fd(side)
+    rt(90)
+    fd(side / 2)
+    end_fill()
+
+
+def draw_circle(side, colour, x, y):
+    move(x, y)
+    fillcolor(colour)
+    begin_fill()
+    penup()
+    lt(90)
+    fd(side / 2)
+    lt(90)
+    pendown()
+    circle(side / 2)
+    end_fill()
+
+
+# zwraca wspolrzedna pionka w zaleznosci od jego pozycji (0,1,2,3) i dl. kratki
+def ret_x(x, length):
+    if x == 0:
+        x = (x - 2) * length * 3 / 2
+    if x == 1:
+        x = (x - 2) * length
+    if x == 2:
+        x = (x - 1) * length
+    if x == 3:
+        x = (x - 1) * length * 3 / 2
+    return x
+
+
+def draw_pawn(x, y, side, board):  # side to dlugosc boku/srednicy pionka, xy to wspolrzedne jego srodka
+    tracer(0, 1)
+    length = side * 5 / 4 / 2   # length to odleglosc srodka pionka od kratki boarda. Pierwsze dwie liczby okreslaja stosunek kratki boarda do wielkosci pionka.
+    colour = board.board[x][y].attributes[0]
+    height = board.board[x][y].attributes[1]
+    shape1 = board.board[x][y].attributes[2]
+    dot1 = board.board[x][y].attributes[3]
+    x = ret_x(x, length)
+    y = ret_x(y, length)
+    move(x, y)
+
+    if height == "short":
+        side /= 2
+
+    if colour == "dark":
+        colour = "black"
+    else:
+        colour = "grey"
+
+    if shape1 == "square":
+        draw_square(side, colour, x, y)
+        if dot1 == "has dot":
+            move(x, y)
+            draw_square(side / 3, "white", x, y)
+    else:
+        draw_circle(side, colour, x, y)
+        if dot1 == "has dot":
+            move(x, y)
+            draw_circle(side / 3, "white", x, y)
+    update()
