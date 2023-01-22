@@ -227,3 +227,58 @@ def draw_board(x, y, pawn_side):  # x, y to wspolrzedne srodka boarda
 
 
     update()
+
+
+def pawn_list(x, lista_pionków, side):
+    y = len(lista_pionków) * side * 5 / 4 / 2 # dlugosc naszej listy / 2
+    oryg_side = side
+    move(x, 0)
+
+    #rysujemy bialy prostakat oryg_side * 2 na y * 2 + 60
+    pencolor("white")
+    fillcolor("white")
+    begin_fill()
+    setheading(0)
+    fd((oryg_side + 100) / 2)
+    setheading(90)
+    fd(500)
+    setheading(180)
+    fd(oryg_side + 100)
+    setheading(270)
+    fd(1000)
+    setheading(0)
+    fd(oryg_side + 100)
+    setheading(90)
+    fd(500)
+    end_fill()
+    pencolor("black")
+
+    for pionek in lista_pionków:  # Wyświetla dostępne pionki wraz z atrybutami
+        side = oryg_side
+        move(x, y)
+        colour = pionek.attributes[0]
+        height = pionek.attributes[1]
+        shape1 = pionek.attributes[2]
+        dot1 = pionek.attributes[3]
+        if height == "short":
+            side /= 2
+
+        if colour == "dark":
+            colour = "black"
+        else:
+            colour = "grey"
+
+        if shape1 == "square":
+            draw_square(side, colour, x, y)
+            if dot1 == "has dot":
+                move(x, y)
+                draw_square(side / 3, "white", x, y)
+        else:
+            draw_circle(side, colour, x, y)
+            if dot1 == "has dot":
+                move(x, y)
+                draw_circle(side / 3, "white", x, y)
+
+        write_row((x-40, position()[1]), pionek.id, 0)
+        y -= oryg_side * 5 / 4
+        update()

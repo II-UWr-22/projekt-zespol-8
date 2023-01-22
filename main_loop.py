@@ -5,7 +5,7 @@
 from game_functions import place_pawn, choose_pawn, check_for_win
 from board import Piece, Board
 from turtle import *
-from game_functions import draw_pawn, draw_board
+from game_functions import draw_pawn, draw_board, pawn_list
 
 #Prowizoryczny ekran startowy
 
@@ -31,8 +31,16 @@ def gra(gracze):          #Tutaj jest rozgrywka
 
         print('Dostępne pionki: ')
         lista_pionków = [Piece(x) for x in board.available_pieces]      #Lista pionków
-        for pionek in lista_pionków:                                    #Wyświetla dostępne pionki wraz z atrybutami
+        light = []  # lista jasnych pionkow
+        dark = []  # lista ciemnych pionkow
+        for pionek in lista_pionków:  # Wyświetla dostępne pionki wraz z atrybutami
             print(pionek)
+            if pionek.attributes[0] == "dark":
+                dark.append(pionek)
+            else:
+                light.append(pionek)
+        pawn_list(-500, light, 70)
+        pawn_list(500, dark, 70)
         print('\n\n')
 
         print(f"\t\tRuch gracza {gracze[gracz]}")                           #Wybiera pionek drugiemu graczowi
