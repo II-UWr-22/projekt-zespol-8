@@ -5,7 +5,7 @@
 from game_functions import place_pawn, choose_pawn, check_for_win
 from board import Piece, Board
 from turtle import *
-from game_functions import draw_pawn
+from game_functions import draw_pawn, draw_board
 
 #Prowizoryczny ekran startowy
 
@@ -25,12 +25,12 @@ def gra(gracze):          #Tutaj jest rozgrywka
     print('\n\n\n[Menu] by zakończyć rozgrywkę w dowolnym momencie wpisz "Menu"\n\n')
 
     gracz = 0       #O to gracz pierwszy, a 1 to gracz drugi
-
+    draw_board(0, 0, 50)
     while len(board.available_pieces) > 0:                             #Tutaj zostanie dodany warunek zwycięstwa gdy zostanie zaimplementowany logicznie
         print(board)
 
         print('Dostępne pionki: ')
-        lista_pionków = [Piece(x) for x in board.available_pieces]      #Lista pionków 
+        lista_pionków = [Piece(x) for x in board.available_pieces]      #Lista pionków
         for pionek in lista_pionków:                                    #Wyświetla dostępne pionki wraz z atrybutami
             print(pionek)
         print('\n\n')

@@ -161,3 +161,69 @@ def draw_pawn(x, y, side, board):  # side to dlugosc boku/srednicy pionka, xy to
             move(x, y)
             draw_circle(side / 3, "white", x, y)
     update()
+
+
+def write_row(position1, number, length):
+    x = position1[0] - 20
+    y = position1[1]
+    y += length
+    move(x, y)
+    write(number)
+
+
+def write_col(position1, number, length):
+    x = position1[0]
+    y = position1[1] - 20
+    x += length
+    move(x, y)
+    write(number)
+
+
+def draw_board(x, y, pawn_side):  # x, y to wspolrzedne srodka boarda
+    Screen().setup(width=1.0, height=1.0)
+    hideturtle()
+    length = pawn_side * 5 / 4 / 2
+    tracer(0, 1)
+    board_side = pawn_side * 5
+
+    # poziome kreski i podpisy
+    forward(board_side/2)
+    backward(board_side)
+    write_row(position(), 2, length)
+
+    move(0, y + board_side / 4)
+    forward(board_side / 2)
+    backward(board_side)
+    write_row(position(), 3, length)
+
+    move(0, y - board_side / 4)
+    forward(board_side / 2)
+    backward(board_side)
+    write_row(position(), 1, length)
+
+    move(position()[0] + 20, y - board_side / 2)
+    write_row(position(), 0, length)
+
+    # pionowe kreski i podpisy
+    move(0, 0)
+    setheading(90)
+
+    forward(board_side / 2)
+    backward(board_side)
+    write_col(position(), 2, length)
+
+    move(x + board_side / 4, 0)
+    forward(board_side / 2)
+    backward(board_side)
+    write_col(position(), 3, length)
+
+    move(x - board_side / 4, 0)
+    forward(board_side / 2)
+    backward(board_side)
+    write_col(position(), 1, length)
+
+    move(x - board_side/2, position()[1] + 20)
+    write_col(position(), 0, length)
+
+
+    update()
