@@ -21,7 +21,7 @@ Można ją zainstalować poleceniami: \
 
 ## Uruchamianie
 
-Żeby uruchomić grę należy sklonować repozytorium na swój dysk, następnie wejść do folderu, do którego ono zostało sklonowane i uruchomić plik main.py w interpreterze pyhtona, co z konsoli można zrobić  poleceniem ```python3 main.py```
+Żeby uruchomić grę należy sklonować repozytorium na swój dysk, następnie wejść do folderu, do którego ono zostało sklonowane i uruchomić plik main_loop.py w interpreterze pyhtona, co z konsoli można zrobić  poleceniem ```python3 main_loop.py```
 
 ## Autorzy
 
