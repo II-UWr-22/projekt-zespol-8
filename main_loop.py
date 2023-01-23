@@ -44,13 +44,13 @@ def gra(gracze):          #Tutaj jest rozgrywka
         print('\n\n')
 
         print(f"\t\tRuch gracza {gracze[gracz]}")                           #Wybiera pionek drugiemu graczowi
-        pawn = choose_pawn(board)
+        pawn = choose_pawn(board, gracze[gracz])
         if pawn == 'Menu':
             break
         print("\n")
 
         print(f"\t\tRuch gracza {gracze[1 -gracz]}")                            #Wybiera gdzie kładzie zadany pionek
-        pomoc = place_pawn(board,pawn)      # Pola od 00 do 33
+        pomoc = place_pawn(board,pawn, gracze[1 -gracz])      # Pola od 00 do 33
         if pomoc == "Menu":
             break
         draw_pawn(pomoc[0], pomoc[1], 50, board)  # to rysuje pionka na danej pozycji

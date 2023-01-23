@@ -2,10 +2,10 @@ from turtle import *
 
 
 # Wybiera pionka po id, usuwa go z dostępnych i zwraca id
-def choose_pawn(board):
+def choose_pawn(board, gracz):
     while True:
         
-        pawn = textinput("Pionek", "Podaj pionka, którego ma postawić twój przeciwnik: ")          #Drobna zmiana, żeby [Menu] przerywało rozgrywkę
+        pawn = textinput(f"Ruch gracza {gracz}", "Podaj pionka, którego ma postawić twój przeciwnik: ")          #Drobna zmiana, żeby [Menu] przerywało rozgrywkę
         try:
             pawn = int(pawn)
         except:
@@ -22,9 +22,9 @@ def choose_pawn(board):
 
 
 # Kładzie pionka na wybranym polu
-def place_pawn(board, pawn):
+def place_pawn(board, pawn, gracz):
     while True:
-        position = textinput("Pole", f"Podaj pole (|00| - |33|) na które chcesz postawić pionka {pawn}: ")
+        position = textinput(f"Ruch gracza {gracz}", f"Podaj pole (|00| - |33|) na które chcesz postawić pionka {pawn}: ")
         if position.strip().lower() == "menu":                                      #Kolejna zmiana umożliwiająca przerwanie gry
             return "Menu"
         try:
@@ -82,12 +82,14 @@ def check_diag(atr, x, y, board):
 
 # rysowanie pionkow na planszy
 def move(x, y):
+    tracer(0, 1)
     penup()
     goto(x, y)
     pendown()
 
 
 def draw_square(side, colour, x, y):
+    tracer(0, 1)
     move(x, y)
     fillcolor(colour)
     begin_fill()
@@ -106,6 +108,7 @@ def draw_square(side, colour, x, y):
 
 
 def draw_circle(side, colour, x, y):
+    tracer(0, 1)
     move(x, y)
     fillcolor(colour)
     begin_fill()
@@ -164,6 +167,7 @@ def draw_pawn(x, y, side, board):  # side to dlugosc boku/srednicy pionka, xy to
 
 
 def write_row(position1, number, length):
+    tracer(0, 1)
     x = position1[0] - 20
     y = position1[1]
     y += length
@@ -172,6 +176,7 @@ def write_row(position1, number, length):
 
 
 def write_col(position1, number, length):
+    tracer(0, 1)
     x = position1[0]
     y = position1[1] - 20
     x += length
@@ -180,10 +185,10 @@ def write_col(position1, number, length):
 
 
 def draw_board(x, y, pawn_side):  # x, y to wspolrzedne srodka boarda
+    tracer(0, 1)
     Screen().setup(width=1.0, height=1.0)
     hideturtle()
     length = pawn_side * 5 / 4 / 2
-    tracer(0, 1)
     board_side = pawn_side * 5
 
     # poziome kreski i podpisy
@@ -230,6 +235,7 @@ def draw_board(x, y, pawn_side):  # x, y to wspolrzedne srodka boarda
 
 
 def pawn_list(x, lista_pionków, side):
+    tracer(0, 1)
     y = len(lista_pionków) * side * 5 / 4 / 2 # dlugosc naszej listy / 2
     oryg_side = side
     move(x, 0)
