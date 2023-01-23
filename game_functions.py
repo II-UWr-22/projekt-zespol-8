@@ -90,6 +90,9 @@ def move(x, y):
 
 def draw_square(side, colour, x, y):
     tracer(0, 1)
+    side = int(round(side))
+    if side % 2 == 1:
+        side += 1
     move(x, y)
     fillcolor(colour)
     begin_fill()
@@ -236,7 +239,7 @@ def draw_board(x, y, pawn_side):  # x, y to wspolrzedne srodka boarda
 
 def pawn_list(x, lista_pionków, side):
     tracer(0, 1)
-    y = len(lista_pionków) * side * 5 / 4 / 2 # dlugosc naszej listy / 2
+    y = round(len(lista_pionków) * side * 5 / 4 / 2) # dlugosc naszej listy / 2
     oryg_side = side
     move(x, 0)
 
@@ -286,5 +289,5 @@ def pawn_list(x, lista_pionków, side):
                 draw_circle(side / 3, "white", x, y)
 
         write_row((x-40, position()[1]), pionek.id, 0)
-        y -= oryg_side * 5 / 4
+        y -= round(oryg_side * 5 / 4)
         update()
