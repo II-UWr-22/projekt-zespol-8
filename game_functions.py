@@ -1,6 +1,5 @@
 from turtle import *
 
-
 # Wybiera pionka po id, usuwa go z dostępnych i zwraca id
 def choose_pawn(board, gracz):
     while True:
@@ -154,7 +153,7 @@ def draw_pawn(x, y, side, board):  # side to dlugosc boku/srednicy pionka, x y t
     shape1 = board.board[x][y].attributes[2]
     dot1 = board.board[x][y].attributes[3]
     x = ret_x(x, length)
-    y = ret_x(y, length)
+    y = ret_x(y, length) + 245
     move(x, y)
 
     if height == "short":
@@ -203,6 +202,7 @@ def draw_board(x, y, pawn_side):  # x, y to wspolrzedne srodka boarda
     board_side = pawn_side * 5
 
     # poziome kreski i podpisy
+    move(x,y)
     forward(board_side/2)
     backward(board_side)
     write_row(position(), 2, length)
@@ -221,19 +221,19 @@ def draw_board(x, y, pawn_side):  # x, y to wspolrzedne srodka boarda
     write_row(position(), 0, length)
 
     # pionowe kreski i podpisy
-    move(0, 0)
+    move(x, y)
     setheading(90)
 
     forward(board_side / 2)
     backward(board_side)
     write_col(position(), 2, length)
 
-    move(x + board_side / 4, 0)
+    move(x + board_side / 4, y)
     forward(board_side / 2)
     backward(board_side)
     write_col(position(), 3, length)
 
-    move(x - board_side / 4, 0)
+    move(x - board_side / 4, y)
     forward(board_side / 2)
     backward(board_side)
     write_col(position(), 1, length)

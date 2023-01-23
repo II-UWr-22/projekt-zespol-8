@@ -25,7 +25,7 @@ def gra(gracze):          #Tutaj jest rozgrywka
     print('\n\n\n[Menu] by zakończyć rozgrywkę w dowolnym momencie wpisz "Menu"\n\n')
 
     gracz = 0       #O to gracz pierwszy, a 1 to gracz drugi
-    draw_board(0, 0, 70)
+    draw_board(0, 245, 70)
     while len(board.available_pieces) > 0:                             #Tutaj zostanie dodany warunek zwycięstwa gdy zostanie zaimplementowany logicznie
         print(board)
 
