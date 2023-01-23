@@ -50,18 +50,23 @@ def check_for_win(board, pawn_location):
                 return True
         return False
 
+
 def check_hori(atr, x, y, board):
     for i in range(0 - y, 4 - y):
         piece = board.board[x][y + i]
         if piece == None or atr not in piece.attributes:
             return False
     return True
+
+
 def check_vert(atr, x, y, board):
     for i in range(0 - x, 4 - x):
         piece = board.board[x + i][y]
         if piece == None or atr not in piece.attributes:
             return False
     return True
+
+
 def check_diag(atr, x, y, board):
     L = [(i, i) for i in range(4)]
     P = [(i, 3 - i) for i in range(4)]
@@ -90,6 +95,7 @@ def move(x, y):
 
 def draw_square(side, colour, x, y):
     tracer(0, 1)
+    pencolor(colour)
     side = int(round(side))
     if side % 2 == 1:
         side += 1
@@ -108,9 +114,11 @@ def draw_square(side, colour, x, y):
     rt(90)
     fd(side / 2)
     end_fill()
+    pencolor("black")
 
 
 def draw_circle(side, colour, x, y):
+    pencolor(colour)
     tracer(0, 1)
     move(x, y)
     fillcolor(colour)
@@ -122,6 +130,7 @@ def draw_circle(side, colour, x, y):
     pendown()
     circle(side / 2)
     end_fill()
+    pencolor("black")
 
 
 # zwraca wspolrzedna pionka w zaleznosci od jego pozycji (0,1,2,3) i dl. kratki
@@ -137,7 +146,7 @@ def ret_x(x, length):
     return x
 
 
-def draw_pawn(x, y, side, board):  # side to dlugosc boku/srednicy pionka, xy to wspolrzedne jego srodka
+def draw_pawn(x, y, side, board):  # side to dlugosc boku/srednicy pionka, x y to jego miejsce na boardzie
     tracer(0, 1)
     length = side * 5 / 4 / 2   # length to odleglosc srodka pionka od kratki boarda. Pierwsze dwie liczby okreslaja stosunek kratki boarda do wielkosci pionka.
     colour = board.board[x][y].attributes[0]
@@ -189,7 +198,6 @@ def write_col(position1, number, length):
 
 def draw_board(x, y, pawn_side):  # x, y to wspolrzedne srodka boarda
     tracer(0, 1)
-    Screen().setup(width=1.0, height=1.0)
     hideturtle()
     length = pawn_side * 5 / 4 / 2
     board_side = pawn_side * 5
@@ -243,7 +251,7 @@ def pawn_list(x, lista_pionków, side):
     oryg_side = side
     move(x, 0)
 
-    #rysujemy bialy prostakat oryg_side * 2 na y * 2 + 60
+    #wymazujemy starą listę pionków
     pencolor("white")
     fillcolor("white")
     begin_fill()

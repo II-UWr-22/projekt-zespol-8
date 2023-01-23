@@ -17,15 +17,15 @@ startowa_wiadomość = """
 [3] Wyjście 
 """
 
-
 def gra(gracze):          #Tutaj jest rozgrywka
     print("\n" * 100)
     board = Board()
+    Screen().setup(width=1.0, height=1.0)
 
     print('\n\n\n[Menu] by zakończyć rozgrywkę w dowolnym momencie wpisz "Menu"\n\n')
 
     gracz = 0       #O to gracz pierwszy, a 1 to gracz drugi
-    draw_board(0, 0, 50)
+    draw_board(0, 0, 70)
     while len(board.available_pieces) > 0:                             #Tutaj zostanie dodany warunek zwycięstwa gdy zostanie zaimplementowany logicznie
         print(board)
 
@@ -43,17 +43,17 @@ def gra(gracze):          #Tutaj jest rozgrywka
         pawn_list(500, dark, 70)
         print('\n\n')
 
-        print(f"\t\tRuch gracza {gracze[gracz]}")                           #Wybiera pionek drugiemu graczowi
+        print(f"\t\tRuch gracza numer {gracze[gracz]}")                           #Wybiera pionek drugiemu graczowi
         pawn = choose_pawn(board, gracze[gracz])
         if pawn == 'Menu':
             break
         print("\n")
 
-        print(f"\t\tRuch gracza {gracze[1 -gracz]}")                            #Wybiera gdzie kładzie zadany pionek
+        print(f"\t\tRuch gracza numer {gracze[1 -gracz]}")                            #Wybiera gdzie kładzie zadany pionek
         pomoc = place_pawn(board,pawn, gracze[1 -gracz])      # Pola od 00 do 33
         if pomoc == "Menu":
             break
-        draw_pawn(pomoc[0], pomoc[1], 50, board)  # to rysuje pionka na danej pozycji
+        draw_pawn(pomoc[0], pomoc[1], 70, board)  # to rysuje pionka na danej pozycji
         if check_for_win(board, pomoc):
             return gracze[1 -gracz]  #zwraca numer gracza który stawiał pionka
 
@@ -82,8 +82,8 @@ def wygrana(gracz):
         clearscreen()
 
 def wczytaj_nazwy_graczy():
-    gracz1 = textinput("Gracz nr 1", "Podaj nazwę gracza 1: ")
-    gracz2 = textinput("Gracz nr 2", "Podaj nazwę gracza 2: ")
+    gracz1 = textinput("Gracz nr 1", "Podaj nazwę gracza nr 1: ")
+    gracz2 = textinput("Gracz nr 2", "Podaj nazwę gracza nr 2: ")
     return (gracz1,gracz2)
 
 
