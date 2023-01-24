@@ -7,7 +7,6 @@ from board import Piece, Board
 from turtle import *
 from game_functions import draw_pawn, draw_board, pawn_list
 
-#Prowizoryczny ekran startowy
 
 startowa_wiadomość = """
 [1] Rozpocznij grę 
@@ -18,38 +17,28 @@ startowa_wiadomość = """
 """
 
 def gra(gracze):          #Tutaj jest rozgrywka
-    print("\n" * 100)
     board = Board()
     Screen().setup(width=1.0, height=1.0)
 
-    print('\n\n\n[Menu] by zakończyć rozgrywkę w dowolnym momencie wpisz "Menu"\n\n')
-
     gracz = 0       #O to gracz pierwszy, a 1 to gracz drugi
-    draw_board(0, 245, 70)
-    while len(board.available_pieces) > 0:                             #Tutaj zostanie dodany warunek zwycięstwa gdy zostanie zaimplementowany logicznie
-        print(board)
-
-        print('Dostępne pionki: ')
+    draw_board(0, 290, 70)
+    while len(board.available_pieces) > 0:
         lista_pionków = [Piece(x) for x in board.available_pieces]      #Lista pionków
         light = []  # lista jasnych pionkow
         dark = []  # lista ciemnych pionkow
         for pionek in lista_pionków:  # Wyświetla dostępne pionki wraz z atrybutami
-            print(pionek)
             if pionek.attributes[0] == "dark":
                 dark.append(pionek)
             else:
                 light.append(pionek)
         pawn_list(-500, light, 70)
         pawn_list(500, dark, 70)
-        print('\n\n')
-
-        print(f"\t\tRuch gracza numer {gracze[gracz]}")                           #Wybiera pionek drugiemu graczowi
         pawn = choose_pawn(board, gracze[gracz])
         if pawn == 'Menu':
             break
         print("\n")
 
-        print(f"\t\tRuch gracza numer {gracze[1 -gracz]}")                            #Wybiera gdzie kładzie zadany pionek
+        #Wybiera gdzie kładzie zadany pionek
         pomoc = place_pawn(board,pawn, gracze[1 -gracz])      # Pola od 00 do 33
         if pomoc == "Menu":
             break
@@ -88,10 +77,10 @@ def wczytaj_nazwy_graczy():
 
 
 while True:     #Tutaj jest menu                
-
+    print('Wpisz "Menu", by zakończyć rozgrywkę w dowolnym momencie\n\n')
     while True:
         wybór_startowy = textinput("Wybierz opcję", startowa_wiadomość)
-        if wybór_startowy not in ['1','2','3']:               #Nasze opcje w menu (jak ktoś ma propozycje to proszę pisać)
+        if wybór_startowy not in ['1','2','3']:               #Nasze opcje w menu
             print('[Taka opcja nie istnieje]\n\n')
         else:
             wybór_startowy = int(wybór_startowy)
@@ -104,10 +93,10 @@ while True:     #Tutaj jest menu
     elif wybór_startowy == 2:
         zasady()
     elif wybór_startowy == 3:
+        Screen().bye()
         break
 
-print('Dziękujemy za grę :D')
-done()
 
+print("Dziękujemy za grę :D")
 
 

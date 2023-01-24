@@ -153,7 +153,7 @@ def draw_pawn(x, y, side, board):  # side to dlugosc boku/srednicy pionka, x y t
     shape1 = board.board[x][y].attributes[2]
     dot1 = board.board[x][y].attributes[3]
     x = ret_x(x, length)
-    y = ret_x(y, length) + 245
+    y = ret_x(y, length) + 290
     move(x, y)
 
     if height == "short":
