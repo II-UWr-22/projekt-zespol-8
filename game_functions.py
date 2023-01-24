@@ -183,7 +183,7 @@ def write_row(position1, number, length):
     y = position1[1]
     y += length
     move(x, y)
-    write(number)
+    write(number, font=('arial', 8, 'bold'))
 
 
 def write_col(position1, number, length):
@@ -192,7 +192,7 @@ def write_col(position1, number, length):
     y = position1[1] - 20
     x += length
     move(x, y)
-    write(number)
+    write(number,  font=('arial', 8, 'bold'))
 
 
 def draw_board(x, y, pawn_side):  # x, y to wspolrzedne srodka boarda
