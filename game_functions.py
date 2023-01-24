@@ -196,6 +196,7 @@ def write_col(position1, number, length):
 
 
 def draw_board(x, y, pawn_side):  # x, y to wspolrzedne srodka boarda
+    width(2)
     tracer(0, 1)
     hideturtle()
     length = pawn_side * 5 / 4 / 2
@@ -240,7 +241,7 @@ def draw_board(x, y, pawn_side):  # x, y to wspolrzedne srodka boarda
 
     move(x - board_side/2, position()[1] + 20)
     write_col(position(), 0, length)
-
+    width(1)
 
     update()
 
